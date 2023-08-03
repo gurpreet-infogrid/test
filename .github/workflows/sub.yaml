@@ -1,6 +1,6 @@
 on:
   workflow_dispatch:
-    nputs:
+    inputs:
       logLevel:
         description: 'Log level'
         required: true
@@ -11,10 +11,10 @@ on:
         - warning
         - debug
   workflow_call:
-      inputs:
-        variable:
-          required: true
-          type: string
+    inputs:
+      variable:
+        required: true
+        type: string
 
 jobs:
   reusable_workflow_job:
@@ -26,4 +26,3 @@ jobs:
         env:
           VAR: ${{ inputs.variable }}
           LEVEL: ${{ inputs.logLevel }}
-
