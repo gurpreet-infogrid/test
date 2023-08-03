@@ -10,8 +10,13 @@ permissions:
   contents: read
 
 jobs:
-  quality:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+  call-workflow-passing-data:
+    uses: ./.github/workflows/sub.yml@main
+    with:
+      variable: hello

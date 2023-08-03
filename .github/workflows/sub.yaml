@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch:
+    nputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+  workflow_call:
+      inputs:
+        variable:
+          required: true
+          type: string
+
+jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Tags: $VAR"
+        env:
+          VAR: ${{ inputs.variable }}
+          LEVEL: ${{ inputs.logLevel }}
+
